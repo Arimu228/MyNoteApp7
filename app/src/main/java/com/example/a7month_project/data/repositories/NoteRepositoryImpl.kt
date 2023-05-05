@@ -37,7 +37,7 @@ class NoteRepositoryImpl @Inject constructor(
             } catch (e: Exception){
                 emit(Resource.Error(e.localizedMessage ?: "unknown error"))
             }
-        }
+        }.flowOn(Dispatchers.IO)
     }
 
     override fun editNote(note: Note): Flow<Resource<Unit>> {
