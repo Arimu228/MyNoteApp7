@@ -33,7 +33,8 @@ class NoteRepositoryImpl @Inject constructor(
             emit(Resource.Loading())
             try {
                 val data = noteDao.getAllNotes()
-                emit(Resource.Success(data.map { note -> note.toNote()}))
+                //emit(Resource.Success(data.map { note -> note.toNote()})) - сначало так сделал
+                emit(Resource.Success(data.map { it.toNote}))
             } catch (e: Exception){
                 emit(Resource.Error(e.localizedMessage ?: "unknown error"))
             }
