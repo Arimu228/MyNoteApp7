@@ -8,7 +8,7 @@ class NoteEntity (
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val title: String,
-    val desc: String,
+    val desc: String
 )
 
 //NoteDto
