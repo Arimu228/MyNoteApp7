@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">7month_project</string>
+    <string name="app_name">NoteApp7</string>
+    <string name="first">first page</string>
+    <string name="second">second page</string>
 </resources>
