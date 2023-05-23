@@ -7,6 +7,13 @@
     tools:context=".presentation.ui.fragment.listofnote.ListOfNoteFragment">
 
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        />
+
     <Button
         android:id="@+id/button_back"
         android:layout_width="188dp"
