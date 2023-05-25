@@ -1,10 +1,7 @@
 package com.example.a7month_project.presentation.Base
 
-import android.content.Context
-import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.a7month_project.domain.model.Note
 import com.example.a7month_project.domain.utils.Resource
 import com.example.a7month_project.presentation.utils.UIState
 import kotlinx.coroutines.flow.Flow
@@ -12,7 +9,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
 abstract class BaseViewModel : ViewModel() {
-    protected fun <T> Flow<Resource<T>>.collectData(_state: MutableStateFlow<UIState<List<Note>>>) {
+    protected fun <T> Flow<Resource<T>>.collectData(_state: MutableStateFlow<UIState<T>>) {
         viewModelScope.launch {
             this@collectData.collect { res ->
                 when (res) {
@@ -24,7 +21,7 @@ abstract class BaseViewModel : ViewModel() {
                     }
                     is Resource.Success -> {
                         if (res.data != null)
-                            _state.value = UIState.Succes(res.data)
+                            _state.value = UIState.Success(res.data)
                     }
                 }
             }

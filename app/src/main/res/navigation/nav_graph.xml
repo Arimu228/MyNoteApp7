@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_grapgh"
+    android:id="@+id/nav_graph"
     app:startDestination="@id/listOfNoteFragment">
 
     <fragment
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/editListFragment"
-        android:name="com.example.noteapp.EditListFragment"
+        android:name="com.example.a7month_project.presentation.ui.fragment.EditListFragment.EditListFragment"
         android:label="fragment_edit_list"
         tools:layout="@layout/fragment_edit_list" >
         <action

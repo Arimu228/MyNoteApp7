@@ -24,12 +24,11 @@ object NoteModule {
             context,
             NoteDatabase::class.java,
             "note_db"
-        )
+        ).build()
     @Provides
     fun provideNoteDao(noteDatabase: NoteDatabase) = noteDatabase.noteDao()
 
     @Provides
-    fun provideNoteRepository(noteDao: NoteDao): NoteRepository{
-        return NoteRepositoryImpl(noteDao)
-    }
+    fun provideNoteRepository(noteDao: NoteDao): NoteRepository = NoteRepositoryImpl(noteDao)
+
 }

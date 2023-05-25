@@ -1,6 +1,5 @@
 package com.example.a7month_project.presentation.Base
 
-import android.provider.Contacts.Intents.UI
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
@@ -26,7 +25,7 @@ abstract class BaseFragment : Fragment() {
                             Toast.makeText(requireContext(), result.message, Toast.LENGTH_SHORT).show()
                         }
                         is UIState.Loading -> {}
-                        is UIState.Succes -> {
+                        is UIState.Success -> {
                             onSuccess(result.data)
                         }
                     }

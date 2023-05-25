@@ -16,4 +16,3 @@ abstract class BaseRepo {
             }
         }.flowOn(Dispatchers.IO)
     }
-}

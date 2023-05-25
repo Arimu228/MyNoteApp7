@@ -27,6 +27,4 @@ class NoteRepositoryImpl @Inject constructor(
     override fun removeNote(note: Note)= doRequest {
         noteDao.removeNote(note.toEntity())
     }
-
-
 }

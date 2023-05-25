@@ -8,7 +8,6 @@ import com.example.a7month_project.presentation.utils.UIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
 
 import javax.inject.Inject
 
@@ -21,7 +20,7 @@ class ListOfNoteViewModel @Inject constructor(
     private val _getAllNotesState = MutableStateFlow<UIState<List<Note>>>(UIState.Empty())
     val getAllNotesState = _getAllNotesState.asStateFlow()
 
-    private val _removeNotesState = MutableStateFlow<UIState<List<Note>>>(UIState.Empty())
+    private val _removeNotesState = MutableStateFlow<UIState<Unit>>(UIState.Empty())
     val removeAllNotesState = _removeNotesState.asStateFlow()
 
     fun getAllNotes() {

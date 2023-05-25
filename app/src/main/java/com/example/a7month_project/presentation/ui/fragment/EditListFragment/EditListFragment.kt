@@ -40,8 +40,8 @@ class EditListFragment : Fragment() {
     }
 
     private fun intiListener() {
-        binding.buttonNext.setOnClickListener {
-            findNavController().navigate(R.id.action_listOfNoteFragment_to_editListFragment)
+        binding.btnSend.setOnClickListener {
+            createNote()
         }
     }
 
@@ -59,7 +59,7 @@ class EditListFragment : Fragment() {
                         is UIState.Loading -> {
                             //show progress bar
                         }
-                        is UIState.Succes -> {
+                        is UIState.Success -> {
                             //set list  to adapter
                         }
                     }
@@ -68,8 +68,15 @@ class EditListFragment : Fragment() {
         }
     }
 
-    private fun createNote(note: Note) {
-        viewModel.createNotes(note)
+    private fun createNote() {
+        viewModel.createNotes(Note(
+            title = binding.etTitle.text.toString(),
+            desc = binding.etDesc.text.toString()
+        ))
+
+
+
+
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.createNotesState.collect { state ->
@@ -82,8 +89,8 @@ class EditListFragment : Fragment() {
                         is UIState.Loading -> {
                             //show progress bar
                         }
-                        is UIState.Succes -> {
-                            //set list  to adapter
+                        is UIState.Success -> {
+                            findNavController().navigateUp()
                         }
                     }
                 }

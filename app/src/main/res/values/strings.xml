@@ -2,4 +2,9 @@
     <string name="app_name">NoteApp7</string>
     <string name="first">first page</string>
     <string name="second">second page</string>
+    <string name="title">Title</string>
+    <string name="description">description</string>
+    <string name="save">Save</string>
+
+
 </resources>

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.get
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -25,6 +26,8 @@ import kotlinx.coroutines.launch
 class ListOfNoteFragment : BaseFragment() {
     private lateinit var binding: FragmentListOfNoteBinding
     private val viewModel by viewModels<ListOfNoteViewModel>()
+    private lateinit var adapter: ListOfNoteAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,9 +44,21 @@ class ListOfNoteFragment : BaseFragment() {
         }
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        adapter = ListOfNoteAdapter(this::onItemClick)
+    }
+
+    private fun onItemClick(note: Note) {
+        adapter.deleteItemsAndNotifyAdapter(note)
+        removeNotes(note)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initListener()
+        getAllNotes()
+
     }
 
     private fun getAllNotes() {
@@ -53,9 +68,17 @@ class ListOfNoteFragment : BaseFragment() {
                 binding.progressBar.isVisible = state is UIState.Loading
 
             }, onSuccess = { data ->
+                binding.recyclerList.adapter = adapter
+                adapter.setList(data)
 
             })
     }
+//    private fun updateData(note: Note) {
+//        note.title = binding. .text.toString()
+//
+//        taskModel.description = binding.etDesc.text.toString()
+//        App.db.Dao().updateTask(taskModel)// и здесь ее обновиить
+//    }
 
     private fun removeNotes(note: Note) {
         viewModel.removeNotes(note)
@@ -69,10 +92,11 @@ class ListOfNoteFragment : BaseFragment() {
                                 .show()
                         }
                         is UIState.Loading -> {
-                            //show progress bar
+                            binding.progressBar.isVisible = true
                         }
-                        is UIState.Succes -> {
-                            //set list  to adapter
+                        is UIState.Success -> {
+                            Toast.makeText(requireContext(), "Success deleted", Toast.LENGTH_SHORT).show()
+
                         }
                     }
                 }
